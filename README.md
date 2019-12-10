@@ -10,7 +10,7 @@ from typing import List
 k: int = 17
 numbers: List[int] = [10, 15, 3, 7]
 
-def check_addup(total: k, numbers: List[int]) -> bool:
+def check_addup(k: int, numbers: List[int]) -> bool:
     for number in numbers:
         if k - number in numbers:
             return True
