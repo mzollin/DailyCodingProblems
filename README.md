@@ -18,3 +18,31 @@ def check_addup(k: int, numbers: List[int]) -> bool:
 
 print(check_addup(k, numbers))
 ```
+
+## Day 2
+>Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i. For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].  
+>Follow-up: what if you can't use division?
+```python
+import math
+from typing import List
+
+numbers1: List[int] = [1, 2, 3, 4, 5]
+numbers2: List[int] = [3, 2, 1]
+
+def array_product(numbers: List[int]) -> List[int]:
+    prod = math.prod(numbers)
+    return [int(prod / i) for i in numbers]
+
+def array_product_nodiv(numbers: List[int]) -> List[int]:
+    products = list(numbers)
+    for i, _n in enumerate(numbers):
+        element = numbers.pop(i)
+        products[i] = math.prod(numbers)
+        numbers.insert(i, element)
+    return products
+
+print(array_product(numbers1))
+print(array_product(numbers2))
+print(array_product_nodiv(numbers1))
+print(array_product_nodiv(numbers2))
+```
