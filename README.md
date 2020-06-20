@@ -70,3 +70,23 @@ def deserialize(s: str) -> Node:
 node = Node('root', Node('left', Node('left.left')), Node('right'))
 assert deserialize(serialize(node)).left.left.val == 'left.left'
 ```
+
+## Day 4
+>Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well. For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3. You can modify the input array in-place.  
+```python
+from typing import List
+
+numbers1: List[int] = [3, 4, -1, 1]
+numbers2: List[int] = [1, 2, 0]
+
+def lowest_missing_number(numbers: List[int]) -> int:
+    numbers.sort()
+    lowest: int = 1
+    for i in numbers:
+        if i == lowest + 1:
+            lowest = i
+    return lowest + 1
+
+print(lowest_missing_number(numbers1))
+print(lowest_missing_number(numbers2))
+```
