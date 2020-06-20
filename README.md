@@ -61,10 +61,10 @@ class Node:
         self.left = left
         self.right = right
 
-def serialize(root):
+def serialize(root: Node) -> str:
     return jsonpickle.encode(root)
 
-def deserialize(s):
+def deserialize(s: str) -> Node:
     return jsonpickle.decode(s)
 
 node = Node('root', Node('left', Node('left.left')), Node('right'))
