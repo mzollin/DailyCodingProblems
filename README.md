@@ -46,3 +46,27 @@ print(array_product(numbers2))
 print(array_product_nodiv(numbers1))
 print(array_product_nodiv(numbers2))
 ```
+
+## Day 3
+>Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deserialize(s), which deserializes the string back into the tree.  
+
+The Node class and test were given.  
+```python
+import jsonpickle
+# I admit to taking the easy way out on this one ;)
+
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def serialize(root):
+    return jsonpickle.encode(root)
+
+def deserialize(s):
+    return jsonpickle.decode(s)
+
+node = Node('root', Node('left', Node('left.left')), Node('right'))
+assert deserialize(serialize(node)).left.left.val == 'left.left'
+```
