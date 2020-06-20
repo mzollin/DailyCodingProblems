@@ -94,19 +94,23 @@ print(lowest_missing_number(numbers2))
 ## Day 5
 >cons(a, b) constructs a pair, and car(pair) and cdr(pair) returns the first and last element of that pair. For example, car(cons(3, 4)) returns 3, and cdr(cons(3, 4)) returns 4. Implement car and cdr.  
 
-The implementation of cons was given.
+The implementation of cons was given and therefore not type annotated.
 ```python
-from typing import Callable, Any
+from typing import Callable, Any, TypeVar
 
 def cons(a, b):
     def pair(f):
         return f(a, b)
     return pair
 
-def car(pair: Callable[[Callable[[Any, Any], Any]], Any]) -> Any:
+# Big thanks to Florian Bruhin for helping with the type annotations on this one
+A = TypeVar('A')
+B = TypeVar('B')
+
+def car(pair: Callable[[Callable[[A, B], A]], A]) -> A:
     return pair(lambda a, b: a)
 
-def cdr(pair: Callable[[Callable[[Any, Any], Any]], Any]) -> Any:
+def cdr(pair: Callable[[Callable[[A, B], B]], B]) -> B:
     return pair(lambda a, b: b)
 
 print(car(cons(3, 4)))
