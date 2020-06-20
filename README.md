@@ -90,3 +90,25 @@ def lowest_missing_number(numbers: List[int]) -> int:
 print(lowest_missing_number(numbers1))
 print(lowest_missing_number(numbers2))
 ```
+
+## Day 5
+>cons(a, b) constructs a pair, and car(pair) and cdr(pair) returns the first and last element of that pair. For example, car(cons(3, 4)) returns 3, and cdr(cons(3, 4)) returns 4. Implement car and cdr.  
+
+The implementation of cons was given.
+```python
+from typing import Callable, Any
+
+def cons(a, b):
+    def pair(f):
+        return f(a, b)
+    return pair
+
+def car(pair: Callable[[Callable[[Any, Any], Any]], Any]) -> Any:
+    return pair(lambda a, b: a)
+
+def cdr(pair: Callable[[Callable[[Any, Any], Any]], Any]) -> Any:
+    return pair(lambda a, b: b)
+
+print(car(cons(3, 4)))
+print(cdr(cons(3, 4)))
+```
