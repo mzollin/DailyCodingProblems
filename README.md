@@ -116,3 +116,24 @@ def cdr(pair: Callable[[Callable[[A, B], B]], B]) -> B:
 print(car(cons(3, 4)))
 print(cdr(cons(3, 4)))
 ```
+
+## Day 785
+>Given a list of integers, return the largest product that can be made by multiplying any three integers.  
+>For example, if the list is [-10, -10, 5, 2], we should return 500, since that's -10 * -10 * 5.
+```python
+from itertools import combinations
+from math import prod
+from typing import List
+
+numbers: List[int] = [-10, -10, 5, 2]
+
+def largest_list_product(numbers: List[int], n: int = 3):
+    """Calculate the largest product of any n integers in a list."""
+    if n > len(numbers):
+        raise ValueError("Not enough numbers in the list for this product!")
+    return max([prod(c) for c in combinations(numbers, n)])
+
+assert largest_list_product(numbers) == 500
+assert largest_list_product(numbers, 2) == 100
+assert largest_list_product(numbers, 1) == 5
+```
