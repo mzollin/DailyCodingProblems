@@ -16,7 +16,7 @@ def check_addup(k: int, numbers: List[int]) -> bool:
             return True
     return False
 
-print(check_addup(k, numbers))
+assert check_addup(k, numbers)
 ```
 
 ## Day 2
@@ -41,10 +41,10 @@ def array_product_nodiv(numbers: List[int]) -> List[int]:
         numbers.insert(i, element)
     return products
 
-print(array_product(numbers1))
-print(array_product(numbers2))
-print(array_product_nodiv(numbers1))
-print(array_product_nodiv(numbers2))
+assert array_product(numbers1) == [120, 60, 40, 30, 24]
+assert array_product(numbers2) == [2, 3, 6]
+assert array_product_nodiv(numbers1) == [120, 60, 40, 30, 24]
+assert array_product_nodiv(numbers2) == [2, 3, 6]
 ```
 
 ## Day 3
@@ -87,8 +87,8 @@ def lowest_missing_number(numbers: List[int]) -> int:
             lowest = i
     return lowest + 1
 
-print(lowest_missing_number(numbers1))
-print(lowest_missing_number(numbers2))
+assert lowest_missing_number(numbers1) == 2
+assert lowest_missing_number(numbers2) == 3
 ```
 
 ## Day 5
@@ -113,8 +113,8 @@ def car(pair: Callable[[Callable[[A, B], A]], A]) -> A:
 def cdr(pair: Callable[[Callable[[A, B], B]], B]) -> B:
     return pair(lambda a, b: b)
 
-print(car(cons(3, 4)))
-print(cdr(cons(3, 4)))
+assert car(cons(3, 4)) == 3
+assert cdr(cons(3, 4)) == 4
 ```
 
 ## Day 781
