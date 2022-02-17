@@ -117,6 +117,38 @@ print(car(cons(3, 4)))
 print(cdr(cons(3, 4)))
 ```
 
+## Day 781
+>You are given a histogram consisting of rectangles of different heights. These heights are represented in an input list, such that [1, 3, 2, 5] corresponds to the following diagram:
+>```
+>       x
+>       x
+>   x   x
+>   x x x
+> x x x x
+>```
+>Determine the area of the largest rectangle that can be formed only from the bars of the histogram. For the diagram above, for example, this would be six, representing the 2 x 3 area at the bottom right.
+```python
+from typing import List
+
+histogram: List[int] = [1, 3, 2, 5]
+
+def histogram_max_area(histogram: List[int]):
+    """Calculate the largest rectangular area in a histogram."""
+    histogram = [0] + histogram + [0]
+    stack: List[int] = [0]
+    maximum: int = 0
+
+    for i, val in enumerate(histogram):
+        while val < histogram[stack[-1]]:
+            height = histogram[stack.pop()]
+            area = height * (i - stack[-1] - 1)
+            maximum = max(maximum, area)
+        stack.append(i)
+    return maximum
+
+assert histogram_max_area(histogram) == 6
+```
+
 ## Day 785
 >Given a list of integers, return the largest product that can be made by multiplying any three integers.  
 >For example, if the list is [-10, -10, 5, 2], we should return 500, since that's -10 * -10 * 5.
