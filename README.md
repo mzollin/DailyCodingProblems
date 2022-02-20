@@ -117,6 +117,26 @@ assert car(cons(3, 4)) == 3
 assert cdr(cons(3, 4)) == 4
 ```
 
+## Day 775
+>Given an array of time intervals (start, end) for classroom lectures (possibly overlapping), find the minimum number of rooms required.  
+>For example, given [(30, 75), (0, 50), (60, 150)], you should return 2.
+```python
+schedule1 = [(30, 75), (0, 50), (60, 150)]
+schedule2 = [(10, 20), (20, 30)]
+schedule3 = [(25, 35), (25, 35)]
+
+def find_rooms_required(schedule: list[tuple[int, int]]) -> int:
+    timeline = []
+    used = 0
+    for start, end in schedule:
+        timeline += [(start, 1)] + [(end, -1)]
+    return max([used := used + v[1] for v in sorted(timeline)])
+
+assert find_rooms_required(schedule1) == 2
+assert find_rooms_required(schedule2) == 1
+assert find_rooms_required(schedule3) == 2
+```
+
 ## Day 781
 >You are given a histogram consisting of rectangles of different heights. These heights are represented in an input list, such that [1, 3, 2, 5] corresponds to the following diagram:
 >```
