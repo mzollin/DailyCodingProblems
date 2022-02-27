@@ -189,3 +189,23 @@ assert largest_list_product(numbers) == 500
 assert largest_list_product(numbers, 2) == 100
 assert largest_list_product(numbers, 1) == 5
 ```
+
+## Day 795
+>Assume you have access to a function `toss_biased()` which returns 0 or 1 with a probability that's not 50-50 (but also not 0-100 or 100-0). You do not know the bias of the coin. Write a function to simulate an unbiased coin toss.
+```python
+import random
+
+def toss_biased():
+    """Coin flip with unknown bias."""
+    return int(random.random() < 0.7)
+
+def toss_unbiased_from_biased():
+    """Get fair toss from biased coin using von Neumann method."""
+    while True:
+        toss = toss_biased()
+        if toss != toss_biased():
+            return toss
+
+ub = [toss_unbiased_from_biased() for n in range(1000)]
+assert 0.45 < sum(ub) / len(ub) < 0.55
+```
